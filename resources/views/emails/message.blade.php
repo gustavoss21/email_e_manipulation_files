@@ -1,12 +1,12 @@
 <x-mail::message>
-# Introduction
+# Introdução
 
-The body of your message.
+O corpo da sua mensagem
 
 <x-mail::button :url="''">
-Button Text
+Enviar
 </x-mail::button>
 
-Thanks,<br>
+Obragado,<br>
 {{ config('app.name') }}
 </x-mail::message>

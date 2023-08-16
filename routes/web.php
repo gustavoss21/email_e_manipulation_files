@@ -19,13 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/message', [MessagemMail::class, 'content']);
+Route::get('/message', function(){
+        return new MessagemMail();
+    }
+);
+
 Route::get('/envelope', function(){
     // return new MessagemMail();
     Mail::to('santos.gs708@gmail.com')->send(new MessagemMail());
     return 'mensagem enviada';
 });
-Route::get('/attachments', [MessagemMail::class, 'attachments']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
