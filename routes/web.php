@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Mail\MessagemMail;
+use Symfony\Component\Mime\Email;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/message', [MessagemMail::class, 'content']);
+Route::get('/envelope', function(){
+    // return new MessagemMail();
+    Mail::to('santos.gs708@gmail.com')->send(new MessagemMail());
+    return 'mensagem enviada';
+});
+Route::get('/attachments', [MessagemMail::class, 'attachments']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
