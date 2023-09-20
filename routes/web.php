@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\MessagemMail;
 use Symfony\Component\Mime\Email;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,8 @@ use Symfony\Component\Mime\Email;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Auth::routes(['verify' => true]); #sem o verify, o usuario não sera obrigado a validar email
 
 Route::get('/', function () {
     return view('welcome');
