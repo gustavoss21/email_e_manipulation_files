@@ -11,9 +11,12 @@ class TarefaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user_id = auth()->user()->id;
+        $tarefas = Tarefa::where('user_id',$user_id)->get();
+        // dd($tarefa);
+        return view('tarefa.index', ['tarefas'=>$tarefas]);
     }
 
     /**
@@ -29,7 +32,10 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        $tarefa = Tarefa::create($request->all());
+        $dados = $request->all();
+        $dados['user_id'] = auth()->user()->id;
+        $tarefa = Tarefa::create($dados);
+        
         $destinatario = auth()->user()->email;
 
         Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
