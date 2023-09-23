@@ -23,9 +23,18 @@
                                     <td>{{ date('d/m/Y',strtotime($tarefa->validade))}}</td>
                                 </tr>
                             @endforeach
-
+                            
                         </tbody>
                     </table>
+                    <ul>
+                        <li><a class="page-link" href="{{$tarefas->previousPageUrl()}}">proxima</a></li>
+                        
+                        @for($index=1; $index <= $tarefas->lastPage(); $index++)
+                        <li><a class="page-link" href="{{$tarefas->url($index)}}">{{$index}}</a></li>
+                        @endfor
+                        <li><a class="page-link" href="{{$tarefas->nextPageUrl()}}">anterior</a></li>
+                    </ul>
+                    {{dd(get_class_methods($tarefas))}}
                 </div>
             </div>
         </div>
