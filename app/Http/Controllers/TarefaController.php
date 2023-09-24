@@ -48,7 +48,10 @@ class TarefaController extends Controller
      */
     public function show(Tarefa $tarefa)
     {
-        // dd($tarefa);
+        if($tarefa->user_id !== auth()->user()->id){
+            return view('tarefa.denied');
+        }
+
         return view('tarefa.show',['tarefa'=>$tarefa]);
     }
 
@@ -57,6 +60,10 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
     {
+        if($tarefa->user_id !== auth()->user()->id){
+            return view('tarefa.denied');
+        }
+
         return view('tarefa.update', ['tarefa'=>$tarefa]);
     }
 
@@ -65,8 +72,12 @@ class TarefaController extends Controller
      */
     public function update(Request $request, Tarefa $tarefa)
     {
+        if($tarefa->user_id !== auth()->user()->id){
+            return view('tarefa.denied');
+        }
+
         $tarefa->update($request->all());
-        return redirect()->route('tarefa.show',['tarefa' => $tarefa]);
+        return view('tarefa.denied');
     }
 
     /**
