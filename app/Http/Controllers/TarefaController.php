@@ -57,7 +57,7 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
     {
-        //
+        return view('tarefa.update', ['tarefa'=>$tarefa]);
     }
 
     /**
@@ -65,7 +65,8 @@ class TarefaController extends Controller
      */
     public function update(Request $request, Tarefa $tarefa)
     {
-        //
+        $tarefa->update($request->all());
+        return redirect()->route('tarefa.show',['tarefa' => $tarefa]);
     }
 
     /**
