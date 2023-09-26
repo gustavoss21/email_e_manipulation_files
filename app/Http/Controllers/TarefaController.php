@@ -52,7 +52,7 @@ class TarefaController extends Controller
             return view('tarefa.denied');
         }
 
-        return view('tarefa.show',['tarefa'=>$tarefa]);
+        return view('tarefa.show', ['tarefa'=>$tarefa]);
     }
 
     /**
@@ -77,7 +77,7 @@ class TarefaController extends Controller
         }
 
         $tarefa->update($request->all());
-        return view('tarefa.denied');
+        return redirect()->route('tarefa.show', ['tarefa'=>$tarefa->id]);
     }
 
     /**
@@ -85,6 +85,12 @@ class TarefaController extends Controller
      */
     public function destroy(Tarefa $tarefa)
     {
-        //
+        if($tarefa->user_id !== auth()->user()->id){
+            return view('tarefa.denied');
+        }
+
+        $tarefa->delete();
+        return redirect()->route('tarefa.index');
     }
+
 }

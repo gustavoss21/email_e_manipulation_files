@@ -19,7 +19,7 @@ use App\Http\Controllers\TarefaController;
 Auth::routes(['verify' => true]); #sem o verify, o usuario não sera obrigado a validar email
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('bem-vindo');
 });
 
 Route::get('/message', function(){

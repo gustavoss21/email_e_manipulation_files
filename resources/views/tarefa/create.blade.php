@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Adicionar tarefa</div>
+                <div class="card-header">
+                    Adicionar tarefa
+                    <a style="float: right;" href="{{route('tarefa.index')}}">voltar</a>
+                </div>
 
                 <div class="card-body">
                     <form action="{{ route('tarefa.store')}}" method="post">
